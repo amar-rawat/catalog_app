@@ -1,3 +1,4 @@
+import 'package:catalog_app/pages/drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,8 +14,9 @@ class _MyWidgetState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Catalog'),
-        centerTitle: true,
       ),
+      drawer: const MyDrawer(),
+      body: ListView.builder(itemCount: ,),
     );
   }
 }
