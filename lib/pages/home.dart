@@ -1,8 +1,12 @@
+// ignore_for_file: unnecessary_null_comparison
+
+import 'package:catalog_app/themes/mytheme.dart';
+import 'package:catalog_app/widgets/home_widgets/catalog_header.dart';
+import 'package:catalog_app/widgets/home_widgets/catalog_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/models/catalog.dart';
-import '/widgets/drawer.dart';
-import '/widgets/item_widget.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
@@ -20,29 +24,34 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadData() async {
-    var catalogJson = await rootBundle.loadString('assets/file/catalog.json');
-    var decodedData = jsonDecode(catalogJson);
+    final catalogJson = await rootBundle.loadString('assets/file/catalog.json');
+    final decodedData = jsonDecode(catalogJson);
     var productsData = decodedData['products'];
-    List<Item> list = List.from(productsData).map((item)=> item.fromMap)
+    CatalogModel.items = List.from(productsData)
+        .map<Item>((item) => Item.fromMap(item))
+        .toList();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final dummylist = List.generate(20, (index) => CatalogModel.items[0]);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Catalog'),
-      ),
-      drawer: const MyDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: dummylist.length,
-          itemBuilder: (context, index) {
-            return ItemWidget(
-              item: dummylist[index],
-            );
-          },
+      backgroundColor: MyTheme.creamColor,
+      body: SafeArea(
+        child: Padding(
+          padding: Vx.m32,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CatalogHeader(),
+              if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+                const CatalogList().pOnly(top: 16.0).expand()
+              else
+                const Center(
+                  child: CircularProgressIndicator(),
+                ),
+            ],
+          ),
         ),
       ),
     );

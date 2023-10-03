@@ -1,3 +1,7 @@
+class CatalogModel {
+  static List<Item> items = [];
+}
+
 class Item {
   final int id;
   final String name;
@@ -24,4 +28,12 @@ class Item {
       image: map["image"],
     );
   }
+  toMap() => {
+        "id": id,
+        "name": name,
+        "desc": desc,
+        "price": price,
+        "color": color,
+        "image": image,
+      };
 }
