@@ -1,5 +1,6 @@
 import 'package:catalog_app/models/catalog.dart';
 import 'package:catalog_app/themes/mytheme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -12,7 +13,9 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       bottomNavigationBar: Container(
         color: Colors.white,
         child: ButtonBar(

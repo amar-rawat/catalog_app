@@ -3,6 +3,7 @@
 import 'package:catalog_app/themes/mytheme.dart';
 import 'package:catalog_app/widgets/home_widgets/catalog_header.dart';
 import 'package:catalog_app/widgets/home_widgets/catalog_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/models/catalog.dart';
@@ -40,19 +41,24 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Padding(
           padding: Vx.m32,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CatalogHeader(),
-              if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-                const CatalogList().pOnly(top: 16.0).expand()
-              else
-                const Center(
-                  child: CircularProgressIndicator(),
-                ),
-            ],
-          ),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const CatalogHeader(),
+            if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+              const CatalogList().pOnly(top: 16.0).expand()
+            else
+              const Center(
+                child: CircularProgressIndicator(),
+              ),
+          ]),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/cart");
+        },
+        backgroundColor: MyTheme.darkBluishColor,
+        child: const Icon(CupertinoIcons.cart),
       ),
     );
   }
