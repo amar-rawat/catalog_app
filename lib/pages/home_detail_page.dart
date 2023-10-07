@@ -1,6 +1,6 @@
-import 'package:catalog_app/models/catalog.dart';
+import 'package:catalog_app/models/catalog_model.dart';
 import 'package:catalog_app/themes/mytheme.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:catalog_app/widgets/home_widgets/catalog_list.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -23,21 +23,17 @@ class HomeDetailPage extends StatelessWidget {
           buttonPadding: EdgeInsets.zero,
           children: [
             '\$${catalog.price}'.text.xl4.bold.red800.make(),
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(MyTheme.darkBluishColor),
-                  shape: const MaterialStatePropertyAll(StadiumBorder())),
-              onPressed: () {},
-              child: 'Buy'.text.make(),
+            AddToCart(
+              catalog: catalog,
             ).wh(100, 50)
           ],
         ).p32(),
       ),
       backgroundColor: MyTheme.creamColor,
       body: SafeArea(
-          bottom: false,
-          child: Column(children: [
+        bottom: false,
+        child: Column(
+          children: [
             Hero(
               tag: Key(catalog.id.toString()),
               child: Image.network(catalog.image),
@@ -63,7 +59,9 @@ class HomeDetailPage extends StatelessWidget {
                 ),
               ),
             )
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }

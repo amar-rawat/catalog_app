@@ -1,5 +1,15 @@
 class CatalogModel {
   static List<Item> items = [];
+
+  // get item by id
+  Item getById(int id) {
+    return items.firstWhere((element) => element.id == id, orElse: null);
+  }
+
+  //get item by position
+  Item getByPosition(int pos) {
+    return items[pos];
+  }
 }
 
 class Item {

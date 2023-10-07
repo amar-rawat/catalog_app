@@ -6,7 +6,7 @@ import 'package:catalog_app/widgets/home_widgets/catalog_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '/models/catalog.dart';
+import '../models/catalog_model.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'dart:convert';
 
