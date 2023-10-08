@@ -1,5 +1,6 @@
 import 'package:catalog_app/core/store.dart';
 import 'package:catalog_app/pages/cart_page.dart';
+import 'package:catalog_app/pages/registration.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'themes/mytheme.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         "/login": (context) => const LoginPage(),
         "/home": (context) => const HomePage(),
         "/cart": (context) => const CartPage(),
+        "/register": (context) => const Register(),
       },
     );
   }

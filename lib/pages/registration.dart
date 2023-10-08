@@ -1,13 +1,14 @@
+import 'package:catalog_app/pages/home.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<LoginPage> createState() => _MyWidgetState();
+  State<Register> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<LoginPage> {
+class _MyWidgetState extends State<Register> {
   late String name;
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
@@ -18,7 +19,7 @@ class _MyWidgetState extends State<LoginPage> {
       });
       await Future.delayed(const Duration(seconds: 1));
       await Navigator.of(context)
-          .pushNamedAndRemoveUntil('/home', (route) => false);
+          .push(MaterialPageRoute(builder: (context) => const HomePage()));
       setState(() {
         changeButton = false;
       });
@@ -34,13 +35,13 @@ class _MyWidgetState extends State<LoginPage> {
           key: _formKey,
           child: Column(
             children: [
-              const SizedBox(
-                height: 30,
+              Container(
+                height: MediaQuery.sizeOf(context).height * 0.41,
+                child: Image.asset("assets/images/register_image.png",
+                    fit: BoxFit.cover),
               ),
-              Image.asset("assets/images/welcome_image.png", fit: BoxFit.cover),
-              const SizedBox(height: 30),
               const Text(
-                'Welcome Back!',
+                'Welcome',
                 style: TextStyle(fontSize: 30, color: Colors.black),
               ),
               Padding(
@@ -88,7 +89,7 @@ class _MyWidgetState extends State<LoginPage> {
                   child: changeButton
                       ? const Icon(Icons.done, color: Colors.white)
                       : const Text(
-                          'Login',
+                          'Register',
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -99,10 +100,10 @@ class _MyWidgetState extends State<LoginPage> {
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/register');
+                  Navigator.pushNamed(context, '/login');
                 },
                 child: const Text(
-                  'Register now',
+                  'Back to login page',
                   style: TextStyle(
                       color: Colors.cyan, decoration: TextDecoration.underline),
                 ),
