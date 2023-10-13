@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -8,6 +9,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<LoginPage> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   late String name;
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
@@ -48,6 +51,7 @@ class _MyWidgetState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
+                        controller: _email,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Username can not be empty';
@@ -58,6 +62,7 @@ class _MyWidgetState extends State<LoginPage> {
                             hintText: 'Enter username here',
                             labelText: 'Username')),
                     TextFormField(
+                        controller: _password,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Password can not be empty';
@@ -76,7 +81,16 @@ class _MyWidgetState extends State<LoginPage> {
                 ),
               ),
               InkWell(
-                onTap: () => moveToHome(context),
+                onTap: () {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _email.text, password: _password.text)
+                      .then(
+                    (value) {
+                      moveToHome(context);
+                    },
+                  );
+                },
                 child: AnimatedContainer(
                   duration: const Duration(seconds: 1),
                   width: changeButton ? 40 : 150,

@@ -1,4 +1,5 @@
 import 'package:catalog_app/pages/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -9,6 +10,8 @@ class Register extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<Register> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   late String name;
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
@@ -49,6 +52,7 @@ class _MyWidgetState extends State<Register> {
                 child: Column(
                   children: [
                     TextFormField(
+                        controller: _email,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Username can not be empty';
@@ -59,6 +63,7 @@ class _MyWidgetState extends State<Register> {
                             hintText: 'Enter username here',
                             labelText: 'Username')),
                     TextFormField(
+                        controller: _password,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Password can not be empty';
@@ -77,7 +82,15 @@ class _MyWidgetState extends State<Register> {
                 ),
               ),
               InkWell(
-                onTap: () => moveToHome(context),
+                onTap: () {
+                  FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: _email.text, password: _password.text)
+                      .then(
+                        (value) =>
+                            Navigator.pushNamed(context, '/accountCreated'),
+                      );
+                },
                 child: AnimatedContainer(
                   duration: const Duration(seconds: 1),
                   width: changeButton ? 40 : 150,
