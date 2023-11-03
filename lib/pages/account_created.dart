@@ -1,4 +1,6 @@
+import 'package:catalog_app/provider/all_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AccountCreated extends StatefulWidget {
   const AccountCreated({super.key});
@@ -12,6 +14,7 @@ class _AccountCreatedState extends State<AccountCreated> {
   @override
   void initState() {
     super.initState();
+
     doneTick();
   }
 
@@ -72,6 +75,7 @@ class _AccountCreatedState extends State<AccountCreated> {
             TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
+                  context.read<ButtonStateProvider>().changeButton(false);
                 },
                 child: Title(
                     color: Colors.black, child: const Text('Go to login page')))

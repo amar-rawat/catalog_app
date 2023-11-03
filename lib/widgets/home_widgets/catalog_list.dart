@@ -1,37 +1,9 @@
-import 'package:catalog_app/core/store.dart';
 import 'package:catalog_app/models/cart_model.dart';
 import 'package:catalog_app/models/catalog_model.dart';
-import 'package:catalog_app/pages/home_detail_page.dart';
 import 'package:catalog_app/themes/mytheme.dart';
 import 'package:catalog_app/widgets/home_widgets/catalog_image.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-class CatalogList extends StatelessWidget {
-  const CatalogList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: CatalogModel.items.length,
-        itemBuilder: (context, index) {
-          final catalog = CatalogModel.items[index];
-          return InkWell(
-            child: CatalogItem(catalog: catalog),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeDetailPage(
-                  catalog: catalog,
-                ),
-              ),
-            ),
-          );
-        });
-  }
-}
 
 class CatalogItem extends StatelessWidget {
   final Item catalog;
@@ -42,6 +14,7 @@ class CatalogItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: MediaQuery.sizeOf(context).height * 0.2,
+        width: double.infinity,
         margin: const EdgeInsets.symmetric(vertical: 8),
         // padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -78,40 +51,12 @@ class CatalogItem extends StatelessWidget {
                   alignment: MainAxisAlignment.spaceBetween,
                   buttonPadding: EdgeInsets.zero,
                   children: [
-                    '\$${catalog.price}'.text.xl.bold.make(),
-                    AddToCart(catalog: catalog)
+                    Text('\$${catalog.price}'),
                   ],
-                ).pOnly(right: 8)
+                )
               ],
             ))
           ],
         ));
-    // .rounded.white.square(150).make().py8();
-  }
-}
-
-class AddToCart extends StatelessWidget {
-  final Item catalog;
-  AddToCart({super.key, required this.catalog});
-
-  final CartModel _cart = (VxState.store as MyStore).cart;
-  final CatalogModel _catalog = (VxState.store as MyStore).catalog;
-  @override
-  Widget build(BuildContext context) {
-    VxState.watch(context, on: [AddMutation, RemoveMutation]);
-    bool isInCart = _cart.items.contains(catalog);
-
-    return ElevatedButton(
-        style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(MyTheme.darkBluishColor),
-            shape: const MaterialStatePropertyAll(StadiumBorder())),
-        onPressed: () {
-          if (!isInCart) {
-            AddMutation(catalog);
-          }
-        },
-        child: isInCart
-            ? const Icon(Icons.done)
-            : const Icon(CupertinoIcons.cart_badge_plus));
   }
 }

@@ -1,14 +1,18 @@
 class CatalogModel {
-  static List<Item> items = [];
+  static List<Item> items = [
+    Item(
+        id: 1,
+        name: "Amar",
+        desc: "none",
+        price: 999,
+        color: 'blue',
+        image:
+            'https://rukminim1.flixcart.com/image/850/1000/km2clu80/mobile/r/g/e/rog-phone-5-zs673ks-1a053in-asus-original-imagff5hp2scqwyn.jpeg?q=90')
+  ];
 
   // get item by id
   Item getById(int id) {
-    return items.firstWhere((element) => element.id == id, orElse: null);
-  }
-
-  //get item by position
-  Item getByPosition(int pos) {
-    return items[pos];
+    return items.firstWhere((element) => element.id == id);
   }
 }
 
@@ -28,22 +32,5 @@ class Item {
       required this.color,
       required this.image});
 
-  factory Item.fromMap(Map<String, dynamic> map) {
-    return Item(
-      id: map["id"],
-      name: map["name"],
-      desc: map["desc"],
-      price: map["price"],
-      color: map["color"],
-      image: map["image"],
-    );
-  }
-  toMap() => {
-        "id": id,
-        "name": name,
-        "desc": desc,
-        "price": price,
-        "color": color,
-        "image": image,
-      };
+  fromMap() {}
 }

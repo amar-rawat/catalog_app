@@ -17,14 +17,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  auto_size_text_pk:
-    dependency: transitive
-    description:
-      name: auto_size_text_pk
-      sha256: ced55de5336fa7f438c1f5a9aa234e25d7a120c1d40d376a7cdc2af28cdb6995
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -49,6 +41,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      sha256: "1179ae4c69e2ea18179d844d70fc6ed2f082a2bbeb7fa62d35a2a24e2992bd4d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.9.3"
+  cloud_firestore_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_firestore_platform_interface
+      sha256: acdcf0743bbdd0e6b342f3d2033e15d260a2c6f9434dd34b008b8f1c35e62b23
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.16.2"
+  cloud_firestore_web:
+    dependency: transitive
+    description:
+      name: cloud_firestore_web
+      sha256: "321bb0732c8d782a49aede96805e59609e05cf98b6c34370faa04103f46a4a3a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.7.2"
   collection:
     dependency: transitive
     description:
@@ -184,14 +200,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.18.1"
   js:
     dependency: transitive
     description:
@@ -232,6 +240,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   path:
     dependency: transitive
     description:
@@ -304,6 +320,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.6"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.5"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -373,22 +397,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  velocity_x:
-    dependency: "direct main"
-    description:
-      name: velocity_x
-      sha256: "41734c40f1609aaafa5337fd9a9e7e9aaf3464dce8ee2cad18be4226b184e5ca"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.1"
-  vxstate:
-    dependency: transitive
-    description:
-      name: vxstate
-      sha256: ed5a880018191c5cfed8528bd77f2a942b04847168ca12636a306c323d311086
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0"
   web:
     dependency: transitive
     description:
