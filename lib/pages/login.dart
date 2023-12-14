@@ -18,8 +18,12 @@ class _MyWidgetState extends State<LoginPage> {
         changeButton = true;
       });
       await Future.delayed(const Duration(seconds: 1));
-      await Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const HomePage()));
+      await Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ),
+          (route) => false);
       setState(() {
         changeButton = false;
       });
